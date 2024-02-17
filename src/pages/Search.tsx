@@ -39,7 +39,7 @@ function Search() {
 
   return (
     <div className="flex flex-col gap-6 py-10">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-3 md:flex-row justify-between items-center">
         <h1 className="text-2xl">
           Search for movies{" "}
           <span className="text-[#999999]">| {movies.length} result(s)</span>
@@ -90,29 +90,36 @@ function Search() {
                   "https://via.placeholder.com/300x450";
               }}
             />
-            <div className="flex flex-col gap-1 items-start text-start">
-              <h3 className="text-xl font-bold text-[#B6B6B6]">
-                {movie.title}
-              </h3>
-              <p className="text-lg text-[#999999]">
-                {movie.release_date || "Unknown"}
-              </p>
-              <div className="flex gap-4 items-center">
+            <div className="flex flex-col items-start justify-between text-start">
+              <div className="flex flex-col gap-4">
                 <div>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <StarIcon
-                      key={`rating-star-${movie.poster_path}-${i}`}
-                      style={{
-                        color: rating > i ? "rgb(59 130 246)" : "disabled",
-                      }}
-                    />
-                  ))}
+                  <h3 className="text-2xl font-bold  w-[280px] md:w-[500px] lg:w-[1000px] overflow-hidden text-ellipsis whitespace-nowrap">
+                    {movie.title}
+                  </h3>
+                  <p className="text-lg text-[#999999]">
+                    {movie.release_date || "Unknown"}
+                  </p>
                 </div>
-                <p>{rating} / 5</p>
+
+                <div className="flex gap-3 items-center">
+                  <div>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <StarIcon
+                        key={`rating-star-${movie.poster_path}-${i}`}
+                        style={{
+                          color: rating > i ? "rgb(59 130 246)" : "disabled",
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <p>{rating} / 5</p>
+                </div>
               </div>
-              <Link to="/" className="pt-5 font-semibold">
-                View details
-              </Link>
+              <div>
+                <Link to="/" className="font-semibold text-[#B6B6B6]">
+                  View details
+                </Link>
+              </div>
             </div>
           </div>
         );

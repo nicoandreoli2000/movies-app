@@ -87,7 +87,7 @@ const CarsouselItem = ({ movie }: { movie: CarouselItemProps }) => {
         src={`https://image.tmdb.org/t/p/original${movie.image}`}
         alt={movie.title}
       />
-      <div
+      {/* <div
         className="absolute w-full h-20 bg-black bottom-0 flex flex-col items-center justify-center gap-2"
         style={{
           transform: isHovered ? "unset" : "translateY(100%)",
@@ -101,7 +101,7 @@ const CarsouselItem = ({ movie }: { movie: CarouselItemProps }) => {
         >
           {movie.title}
         </h4>
-      </div>
+      </div> */}
     </div>
   );
 };

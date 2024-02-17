@@ -19,13 +19,13 @@ export const Carousel = ({
   return (
     <div className="flex flex-col gap-2 max-w-full">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl text-blue-200 font-semibold">{title}</h2>
+        <h2 className="text-2xl text-white font-semibold">{title}</h2>
         <div className="flex gap-2">
           {Array.from({ length: 6 }).map((_, i) => (
             <Button
               key={`popular-pagination-${i}`}
               className={cn(
-                "h-[5px] rounded-full bg-white p-0 w-5",
+                "h-[5px] rounded-full bg-white p-0 w-5 [&.focus]:bg-blue-500",
                 page === i && "bg-blue-500"
               )}
               onClick={() => setPage(i)}

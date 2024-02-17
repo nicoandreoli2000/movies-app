@@ -25,7 +25,7 @@ export const Carousel = ({
             <Button
               key={`popular-pagination-${i}`}
               className={cn(
-                "h-[5px] rounded-full bg-white p-0 w-5 [&.focus]:bg-blue-500",
+                "h-[5px] rounded-full bg-white p-0 w-5 ",
                 page === i && "bg-blue-500"
               )}
               onClick={() => setPage(i)}

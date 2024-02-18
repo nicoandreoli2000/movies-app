@@ -38,7 +38,7 @@ function Search() {
   };
 
   return (
-    <div className="flex flex-col gap-6 py-10">
+    <div className="flex flex-col gap-6 pt-32 pb-12 px-10">
       <div className="flex flex-col gap-3 md:flex-row justify-between items-center">
         <h1 className="text-2xl">
           Search for movies{" "}
@@ -80,7 +80,7 @@ function Search() {
         return (
           <div
             key={movie.id}
-            className="rounded bg-[#404040] flex gap-4 p-4 h-50 max-h-[180px]"
+            className="rounded bg-[#272727] flex gap-4 p-4 h-50 max-h-[180px] shadow-2xl"
           >
             <img
               className="h-36 object-cover rounded"
@@ -93,7 +93,7 @@ function Search() {
             <div className="flex flex-col items-start justify-between text-start">
               <div className="flex flex-col gap-4">
                 <div>
-                  <h3 className="text-2xl font-bold  w-[280px] md:w-[500px] lg:w-[1000px] overflow-hidden text-ellipsis whitespace-nowrap">
+                  <h3 className="text-white text-2xl font-bold  w-[180px] md:w-[500px] lg:w-[1000px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {movie.title}
                   </h3>
                   <p className="text-lg text-[#999999]">

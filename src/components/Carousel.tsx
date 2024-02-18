@@ -17,28 +17,16 @@ export const Carousel = ({
   const [page, setPage] = useState(0);
 
   return (
-    <div className="flex flex-col gap-2 max-w-full">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl text-white font-semibold">{title}</h2>
-        <div className="flex gap-2">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Button
-              key={`popular-pagination-${i}`}
-              className={cn(
-                "h-[5px] rounded-full bg-white p-0 w-5 ",
-                page === i && "bg-blue-500"
-              )}
-              onClick={() => setPage(i)}
-            />
-          ))}
-        </div>
-      </div>
+    <div className="flex flex-col gap-4 max-w-full">
+      <h2 className="pl-10 text-start text-xl opacity-90 text-white font-semibold">
+        {title}
+      </h2>
 
       <div className="flex overflow-hidden max-w-full relative">
         <div
           className="flex"
           style={{
-            transform: `translateX(-${page * 14.7}%)`,
+            transform: `translateX(-${page * 230 * 3}px)`,
             transition: "transform 0.7s",
           }}
         >
@@ -56,7 +44,7 @@ export const Carousel = ({
           </Button>
         )}
 
-        {page < 5 && (
+        {page < 4 && (
           <Button
             className="absolute right-0 h-full w-10 text-3xl opacity-60"
             onClick={() => setPage((page) => page + 1)}

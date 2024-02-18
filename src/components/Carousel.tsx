@@ -18,7 +18,7 @@ export const Carousel = ({
 
   return (
     <div className="flex flex-col gap-4 max-w-full">
-      <h2 className="pl-10 text-start text-xl opacity-90 text-white font-semibold">
+      <h2 className="pl-10 text-start text-2xl opacity-90 text-white font-semibold">
         {title}
       </h2>
 
@@ -71,7 +71,7 @@ const CarsouselItem = ({ movie }: { movie: CarouselItemProps }) => {
       }}
     >
       <img
-        className={cn("w-full h-full object-cover", isHovered && "opacity-50")}
+        className={cn("w-full h-full object-cover", isHovered && "opacity-60")}
         src={`https://image.tmdb.org/t/p/original${movie.image}`}
         alt={movie.title}
       />

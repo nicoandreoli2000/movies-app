@@ -82,7 +82,13 @@ export const Route = createRootRoute({
           {/* <img className="w-16 h-full object-cover" src="./movies-logo.png" /> */}
         </div>
         <Outlet />
-        <div className="py-5 opacity-80 flex flex-col items-center gap-3">
+        <div
+          className="py-5 h-30 justify-end opacity-80 flex flex-col items-center gap-3"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(27, 27, 27, 0) 0%, #0e0e0e 60%)",
+          }}
+        >
           <div className="flex gap-1 items-center">
             {[
               {

@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { apiClient } from "@/apiClient";
-import { Movie } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
 import SearchIcon from "@mui/icons-material/Search";
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { cn } from "@/utils";
 
 function Search({
   type,
@@ -25,10 +26,11 @@ function Search({
         .get(`/3/search/${type}?query=${query}`)
         .then(({ data }) => data.results as any[])
         .then((data) =>
-          data.map(({ id, title, name, backdrop_path }) => ({
+          data.map(({ id, title, name, backdrop_path, poster_path }) => ({
             id,
             title: title || name,
             image: backdrop_path,
+            hero: poster_path,
           }))
         );
     },
@@ -51,7 +53,7 @@ function Search({
     <div className="flex flex-col gap-6 pt-28 pb-12 px-10 min-h-[86vh]">
       <div className="flex flex-col gap-3 md:flex-row justify-between items-center">
         <h1 className="text-3xl">
-          Search for movies{" "}
+          Search for {type === "movie" ? "movies" : "series"}{" "}
           <span className="opacity-50">| {movies.length} result(s)</span>
         </h1>
         <form onSubmit={handleSubmit}>
@@ -59,7 +61,7 @@ function Search({
             leftIcon={<SearchIcon color="action" />}
             ref={searchTermRef}
             className="w-80 opacity-80"
-            placeholder="Search for movies..."
+            placeholder="Search..."
           />
         </form>
       </div>
@@ -95,26 +97,53 @@ function Search({
         </p>
       )}
 
-      <div className="grid grid-cols-5 gap-y-6 gap-x-3">
-        {movies.map((movie) => {
-          return (
-            <div key={movie.id} className="flex flex-col gap-2">
-              <img
-                className="h-36 object-cover"
-                src={`https://image.tmdb.org/t/p/w1280${movie.image}`}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/placeholder.png";
-                }}
-              />
-              <h3 className="text-start text-md font-semibold px-2">
-                {movie.title}
-              </h3>
-            </div>
-          );
-        })}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols5 gap-y-6 gap-x-3">
+        {movies.map((movie) => (
+          <Item key={movie.id + movie.title} movie={movie} />
+        ))}
       </div>
     </div>
   );
 }
+
+const Item = ({
+  movie,
+}: {
+  movie: { title: string; image: string; id: number; hero: string };
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <div
+      key={movie.id}
+      className="flex flex-col gap-2 relative cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        className={cn("h-36 object-cover", isHovered && "opacity-60")}
+        src={`https://image.tmdb.org/t/p/w1280${movie.image}`}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = "/placeholder.png";
+        }}
+      />
+      <h3 className="text-start text-md font-semibold">{movie.title}</h3>
+
+      {/* <div
+        className={cn(
+          "absolute z-20 bg-black h-80 w-60 top-[-20%] left-[50%] translate-x-[-50%] roundex-xl shadow-xl transition-all duration-300 opacity-50"
+        )}
+      >
+        <img
+          className="h-36 object-cover"
+          src={`https://image.tmdb.org/t/p/w780${movie.hero}`}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/placeholder.png";
+          }}
+        />
+        <h3 className="text-start text-md font-semibold">{movie.title}</h3>
+      </div> */}
+    </div>
+  );
+};
 
 export default Search;

@@ -75,12 +75,15 @@ function Home() {
   return (
     <div className="flex flex-col gap-10 relative w-[100vw]">
       <div className="absolute w-full">
-        <img src={hero.image} className="top-0 left-0 object-cover w-full" />
+        <img
+          src={hero.image}
+          className="top-0 left-0 object-cover w-full h-[320px] md:h-[unset]"
+        />
         <div
           className="absolute bottom-0 w-full h-[300px]"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(27, 27, 27, 0) 0%, #1b1b1b 100%)",
+              "linear-gradient(to bottom, rgba(27, 27, 27, 0) 0%, #1a1a1a 100%)",
           }}
         />
       </div>
@@ -89,11 +92,11 @@ function Home() {
         className="absolute top-0 w-full h-[200px]"
         style={{
           background:
-            "linear-gradient(to top, rgba(27, 27, 27, 0) 0%, #1b1b1b 100%)",
+            "linear-gradient(to top, rgba(27, 27, 27, 0) 0%, #0a0a0a 100%)",
         }}
       />
 
-      <div className="px-10 pt-[350px] z-10 pb-[80px]">
+      <div className="px-10  pt-[150px] lg:pt-[310px] md:pt-[230px] z-10 pb-[20px] lg:pb-[80px]">
         <h1 className="text-start text-white text-6xl font-semibold mb-3">
           {hero.title}
         </h1>

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "../apiClient";
 import { Movie, TvShow } from "../types";
-import { Carousel } from "../components/Carousel";
+import { Carousel } from "../components/Carouselll";
 import { useEffect, useMemo, useState } from "react";
 
 function Home() {

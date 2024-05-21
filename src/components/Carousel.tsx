@@ -7,7 +7,7 @@ type CarouselItemProps = {
   image: string;
   id: number;
 };
-export const Carousel = ({
+export const Carouselasdfasfd = ({
   title,
   data,
 }: {
